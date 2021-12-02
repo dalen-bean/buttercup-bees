@@ -1,0 +1,50 @@
+
+	<div id="page">
+		<div id="header">
+			<a id="logo"><img src="/images/Logo.png" alt="Logo"></a>
+			<div class="loginButton">
+				<% if (loggedIn) { %>
+				<div>
+					<form action="/users/logout">
+						Welcome, <%= currentUser.firstname %>
+						<button>Log out</button>
+					</form>
+				</div>
+				<%} else {%>
+				<div >
+					<form action="/users/login">
+						<button>Log in</button>
+					</form>
+				</div>
+				<% } %>
+			</div>
+			<br>
+			<ul>
+				<li>
+					<a href="/index">Home</a>
+				</li>
+				<li>
+					<a href="/about">About</a>
+				</li>
+				<li>
+					<a href="/location">Locations</a>
+				</li>
+				<li>
+					<a href="/gardens">Gardens</a>
+				</li>
+				<li>
+					<a href="/shop">Shop</a>
+					<ul>
+						<li>
+							<a href="products">Bee Products</a>
+						</li>
+						<li>
+							<a href="gardenProducts">Garden Products</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="contact">Contact</a>
+				</li>
+			</ul>
+		</div>

@@ -1,0 +1,23 @@
+
+ <div id="page">
+  <div id="body">
+    <div id="content">
+      <div class="data-form">
+        <form class="form-signin" action="/beehives/create" method="POST" encType="multipart/form-data">
+          <h2 class="form-signin-heading">Create a new beehive:</h2>
+          <label for="inputHiveID">HiveID</label>
+          <input type="text" name="HiveID" id="HiveID" class="form-control" placeholder="HiveID" autofocus>
+          <label for="inputLocation">Location</label>
+          <input type="text" name="Location" id="Location" class="form-control" placeholder="Location" autofocus>
+          <label for="inputLocation">Description</label>
+          <input type="text" name="Description" id="Description" class="form-control" placeholder="Description" autofocus>
+          <label for="fileInput">File Input</label>
+          <input type="file" name="imageURL" id="fileInput" accept="image/*">
+          </br>
+          </br>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+        </form>
+      </div>
+    </div>
+  </div> 
+</div>

@@ -1,0 +1,36 @@
+<div id="page">
+  <div id="body">
+    <div id="content">
+      <h1 class="center">Product Data
+          <%= product.name %>
+        </h1>
+
+        <table class="table">
+          <tr>
+            <th>Product</th>
+            <td>
+              <%= product.name %>
+            </td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td>
+              <%= product.description%>
+            </td>
+          </tr>
+          <tr>
+            <th>Price</th>
+            <td>
+              <%= product.price%>
+            </td>
+          </tr>
+        </table>
+
+
+        <div>
+          <a class="button" href="/products">View all bee products</a>
+        </div>
+    </div>
+  </div>
+</div>
+

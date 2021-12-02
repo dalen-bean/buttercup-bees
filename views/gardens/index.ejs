@@ -1,0 +1,42 @@
+<div id="page">
+  <div id="body">
+    <div id="content">
+        <h2>Gardens Table</h2>
+        <div class="center">
+          <a class="button" href="/gardens/new">Create garden</a>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>HiveID</th>
+              <th>Location</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% gardens.forEach(garden => { %>
+            <tr>
+              <td>
+                <a href="<%= `/gardens/${garden._id}` %>">
+                  <%= garden.GardenID %>
+                </a>
+              </td>
+              <td>
+                <%= garden.Location %>
+              </td>
+              <td>
+                <a href="<%=`/gardens/${garden._id}/edit`%>">
+                  Edit
+                </a>
+              </td>
+              <td>
+                <a href="<%=`/gardens/${garden._id}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

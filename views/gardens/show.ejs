@@ -1,0 +1,28 @@
+<h1>garden Data for
+  <%= garden.GardenID %>
+</h1>
+<table class="table">
+  <tr>
+    <th>Location</th>
+    <td>
+      <%= garden.Location %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= garden.Description %>
+    </td>
+  </tr>
+</table>
+
+<div>
+  <a class="button" href="/location">View all gardens</a>
+</div>
+<div>
+  <a class="button" href="<%=`/gardens/${garden._id}/edit`%>">
+    Edit garden Details
+  </a>
+</div>
+<div>
+  <a class="button" href="<%= `/gardens/${garden._id}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
+</div>

@@ -1,0 +1,42 @@
+<div id="page">
+  <div id="body">
+    <div id="content">
+        <h2>Beehives Table</h2>
+        <div class="center">
+          <a class="button" href="/beehives/new">Create beehive</a>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>HiveID</th>
+              <th>Location</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% beehives.forEach(beehive => { %>
+            <tr>
+              <td>
+                <a href="<%= `/beehives/${beehive._id}` %>">
+                  <%= beehive.HiveID %>
+                </a>
+              </td>
+              <td>
+                <%= beehive.Location %>
+              </td>
+              <td>
+                <a href="<%=`/beehives/${beehive._id}/edit`%>">
+                  Edit
+                </a>
+              </td>
+              <td>
+                <a href="<%=`/beehives/${beehive._id}/delete?_method=DELETE` %>" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

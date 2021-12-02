@@ -1,0 +1,21 @@
+<div id="page">
+  <div id="body">
+    <div id="content">
+        <div class="data-form">
+          <form class="form-signin" method="POST" action="<%=`/beehives/${beehive._id}/update?_method=PUT`%>" encType="multipart/form-data">
+            <h2>Edit beehive:</h2>
+            <label for="inputHiveID">HiveID</label>
+            <input type="text" name="HiveID" id="HiveID" value="<%=beehive.HiveID%>" class="form-control" placeholder="HiveID" autofocus>
+            <label for="inputLocation">Location</label>
+            <input type="text" name="Location" id="Location" value="<%=beehive.Location%>" class="form-control" placeholder="Location" autofocus>
+            <label for="inputLocation">Description</label>
+            <input type="text" name="Description" id="Description" value="<%=beehive.Description%>" class="form-control" placeholder="Description" autofocus>
+            <label for="fileInput">File Input</label>
+            <input type="file" name="imageURL" id="fileInput" value="<%=beehive.imageURL%>" accept="image/*">
+            <br />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

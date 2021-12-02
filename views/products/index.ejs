@@ -1,0 +1,36 @@
+<div id="page">
+  <div id="body">
+    <div id="content">
+      <h2>Products </h2>
+        <div class="center">
+          <a class="button" href="/products/new">Update Product Inventory</a>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% products.forEach(product => { %>
+            <tr>
+              <td>
+                <a href="<%= `/products/${product._id}` %>">
+                  <%= product.name %>
+                </a>
+              </td>
+              <td>
+                <%= product.description %>
+              </td>
+              <td>
+                <%= product.price %>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
