@@ -108,7 +108,8 @@ p a:hover {
 	height: 557px;
 }
 #body div.header div {
-	position: relative;
+	position: inherit;
+	/* position: relative; */
 }
 #body div.header div a img,
 #body div.header ul li a.figure img,

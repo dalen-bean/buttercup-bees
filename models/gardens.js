@@ -17,7 +17,7 @@ const gardenSchema = new mongoose.Schema({
   },
   Description: {
     type: String,
-    required: false,
+    required: true,
   }
 });
 

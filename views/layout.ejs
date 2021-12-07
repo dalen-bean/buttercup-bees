@@ -6,16 +6,21 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-  <header>
-    <%- include("_header") %>
-  </header>
+  <div id="page">
+    <div id="header">
+      <%- include("_header") %>
+    </div>
+  
+    <div id="body">
+      <%- body %>
 
-        <%- body %>
+      <div id="footer">
+        <%- include('_footer') %>
+      </div>
+    </div>
+   
+</div>  
 
-
-  <footer>
-    <%- include('_footer') %>
-  </footer>
 </body>
 </html>
 

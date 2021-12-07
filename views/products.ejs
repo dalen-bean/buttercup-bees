@@ -1,15 +1,14 @@
 
-  <div id="page">
-    <div id="body">
       <div id="content">
 				
 					<h1>Products</h1>
-				Log in as admin to add locations
 
 				<% if (currentUser && currentUser.admin) { %>
+				
 				<form action="/products/new" method="GET">
 					<button name="newProduct">Add New Product</button>
 				</form>
+				
 				<% } %>
 				<div id="article">
 				<p>
@@ -44,5 +43,3 @@
 					
 				</div>
 		</div>
-	</div>
-</div>

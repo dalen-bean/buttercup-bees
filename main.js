@@ -13,8 +13,11 @@ const express = require("express"),
   passport = require("passport"),
   connectFlash = require("connect-flash"),
   User = require("./models/user"),
+  cartController = require("./controllers/cartController"),
+  ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn,
   layouts = require("express-ejs-layouts");
 const fileUpload = require('express-fileupload');
+require("dotenv").config();
 
 // Import Mongoose rather than working with MongoDB directly
 const mongoose = require("mongoose");
@@ -58,16 +61,18 @@ app.use((req, res, next) => {
   res.locals.loggedIn = req.isAuthenticated();
   res.locals.currentUser = req.user;
   res.locals.flashMessages = req.flash();
+  res.locals.cart = req.session.cart;
   next();
 });
 
-
+app.use(cartController.getCart)
 
 // Routes
 app.get("/", (req, res) => {
   //res.sendFile(__dirname+"/views/index.html");
   res.render("index");
 });
+
 // Home Routes
 app.get("/about", homeController.showAbout);
 app.get("/products", productsController.showAllProducts);
@@ -113,6 +118,16 @@ app.post("/users/login", userController.authenticate);
 app.get("/users/logout", userController.logout, userController.redirectView);
 app.get("/users/register", userController.register);
 app.post("/users/create", userController.create, userController.redirectView);
+
+// Cart Routes
+app.get("/view", cartController.addToCart, cartController.saveCart);
+app.delete("/remove/:id", cartController.removeFromCart, cartController.saveCart);
+app.put("/update", cartController.updateQuantity, cartController.saveCart);
+
+// Checkout
+app.get("/checkout", ensureLoggedIn("/users/login"), cartController.viewCart);
+app.post("/stripecheckout", cartController.saveOrder, cartController.stripeCheckout);
+app.get("/confirm", cartController.confirmPayment, cartController.resetCart, cartController.showInvoice);
 
 
 app.listen(app.get("port"), () => {

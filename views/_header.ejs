@@ -1,6 +1,4 @@
 
-	<div id="page">
-		<div id="header">
 			<a id="logo"><img src="/images/Logo.png" alt="Logo"></a>
 			<div class="loginButton">
 				<% if (loggedIn) { %>
@@ -17,6 +15,11 @@
 					</form>
 				</div>
 				<% } %>
+				<a href="/cart/view" class="button">
+					<span class="loginButton">Shopping Cart<%= cart ? cart.items.length : " 0" %></span>
+					<span class="glyphicon glyphicon-shopping-cart"></span>
+				  </a>
+
 			</div>
 			<br>
 			<ul>
@@ -47,4 +50,4 @@
 					<a href="contact">Contact</a>
 				</li>
 			</ul>
-		</div>
+		

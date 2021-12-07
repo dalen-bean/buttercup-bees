@@ -1,5 +1,4 @@
-<div id="page">
-  <div id="body">
+
     <div id="content">
       <h1 class="center">Product Data
           <%= product.name %>
@@ -31,6 +30,16 @@
           <a class="button" href="/products">View all bee products</a>
         </div>
     </div>
-  </div>
-</div>
+ 
 
+<!-- Shopping Cart -->
+<div>
+  <form action="/cart/add" method="post">
+    <input type="hidden" id="_id" name="_id" value="<%= product._id %>" >
+    <input type="hidden" id="title" name="title" value="<%= product.name %>" >
+    <input type="hidden" id="price" name="price" value="<%= product.price %>" >
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Add to Cart</button>
+
+  
+  </form>
+</div>
