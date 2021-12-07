@@ -1,6 +1,6 @@
 "use strict";
 
-const httpStatus = require("http-status-codes");
+const httpStatus = require("http-status-codes").StatusCodes;
 
 exports.pageNotFoundError = (req, res) => {
   let errorCode = httpStatus.NOT_FOUND;

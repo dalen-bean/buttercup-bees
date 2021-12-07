@@ -18,9 +18,9 @@
 						
 						<% products.forEach(product => { %>
 						<li>
-							<img src="images/<%= product.imageURL %>" alt="">
+							<a href="<%= `/products/${product._id}` %>"><img src="images/<%= product.imageURL %>" alt="Product Image"></a>
 							<div>
-								<h2><%= product.name %> </h2>
+								<h2> <a href="<%= `/products/${product._id}` %>"><%= product.name %> </a></h2>
 								<p><%= product.description %></p>
 								<p> $ <%= product.price %></p>
 								<% if (currentUser && currentUser.admin) { %>

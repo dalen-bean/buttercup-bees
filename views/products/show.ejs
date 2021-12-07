@@ -6,17 +6,23 @@
 
         <table class="table">
           <tr>
+            <th>Image</th>
+            <td>
+              <img src="/images/<%= product.imageURL %>" alt="">
+             </td>
+          </tr>
+          <tr>
             <th>Product</th>
             <td>
               <%= product.name %>
             </td>
-          </tr>
+          </tr><br>
           <tr>
             <th>Description</th>
             <td>
               <%= product.description%>
             </td>
-          </tr>
+          </tr><br>
           <tr>
             <th>Price</th>
             <td>

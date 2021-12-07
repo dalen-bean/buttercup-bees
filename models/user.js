@@ -25,6 +25,10 @@ passportLocalMongoose = require("passport-local-mongoose"),
     }
 
   });
+
+  userSchema.virtual("fullName").get(function() {
+    return `${this.firstname} ${this.lastname}`;
+  });
   
   userSchema.plugin(passportLocalMongoose, {
     usernameField: "email"

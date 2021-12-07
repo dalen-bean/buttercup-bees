@@ -155,5 +155,30 @@ module.exports = {
         next();
      },
 
+     addToCart: (req, res, next) => {
+
+      //Check to see if item already exists in cart.  If so, upate quantity by one.
+    // Otherwise, add item to shopping cart
+    let item = req.cart.get(req.body.id);
+    console.log("item:", item);
+    if (item.length > 0) {
+      req.cart.update(req.body.id, { quantity: item[0].quantity + 1 });
+    } else {
+      // Add new item to shopping cart
+      req.cart.add({
+        id: req.body.id,
+        name: req.body.name,
+        price: req.body.price,
+        quantity: 1
+      });
+     }
+
+     console.log(req.cart.content());
+     res.redirect("/courses");
+  },
+  viewCart: (req, res, next) => {
+    res.json(req.cart.content());
+  }
+
 
 };
