@@ -13,6 +13,7 @@ const express = require("express"),
   passport = require("passport"),
   connectFlash = require("connect-flash"),
   User = require("./models/user"),
+  methodOverride = require("method-override"),
   cartController = require("./controllers/cartController"),
   ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn,
   layouts = require("express-ejs-layouts");
@@ -38,6 +39,12 @@ app.use(express.json()); // Use built-in middleware to parse request body data i
 app.use(layouts); // Tell the app that it should use express-ejs-layouts
 app.use(express.static("public")); // Tell the app where to find static resources
 app.use(fileUpload());
+
+app.use(
+  methodOverride("_method", {
+    methods: ["POST", "GET"]
+  })
+);
 
 app.use(
   expressSession({
