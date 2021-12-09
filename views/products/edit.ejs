@@ -4,13 +4,13 @@
         <form class="form-signin" action="<%=`/products/${product._id}/update?_method=PUT`%>" method="POST">
           <h2 class="form-signin-heading">Edit Products:</h2>
           <label for="inputProductName">Product Name</label>
-          <input type="text" name="name" id="inputProductName" class="form-control" value="<%= product.name %>" placeholder="Product Name" autofocus>
+          <input type="text" name="name" id="inputProductName" class="form-control" value="<%= product.name %>" placeholder="Product Name" autofocus required>
           <label for="inputDescription">Product Description</label><label for="inputDescription">Description</label>
-          <input type="text" name="description" id="inputDescription" class="form-control" value="<%= product.description %>" placeholder="Product Description">
+          <input type="text" name="description" id="inputDescription" class="form-control" value="<%= product.description %>" placeholder="Product Description" required>
           <label for="inputPrice">Price</label>
           <input type="number" step="0.01" name="price" id="inputPrice" class="form-control" value="<%= product.price %>" placeholder="Price" required/>
           <label for="fileInput">File Input</label>
-          <input type="file" name="imageURL" id="fileInput" accept="image/*">
+          <input type="file" name="imageURL" id="fileInput" accept="image/*" required>
           <br />
           <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
         </form>

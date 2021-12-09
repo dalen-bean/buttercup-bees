@@ -5,13 +5,13 @@
         <form class="form-signin" action="/beehives/create" method="POST" encType="multipart/form-data">
           <h2 class="form-signin-heading">Create a new beehive:</h2>
           <label for="inputHiveID">HiveID</label>
-          <input type="text" name="HiveID" id="HiveID" class="form-control" placeholder="HiveID" autofocus>
+          <input type="text" name="HiveID" id="HiveID" class="form-control" placeholder="HiveID" autofocus required>
           <label for="inputLocation">Location</label>
-          <input type="text" name="Location" id="Location" class="form-control" placeholder="Location" autofocus>
+          <input type="text" name="Location" id="Location" class="form-control" placeholder="Location" autofocus required>
           <label for="inputLocation">Description</label>
-          <input type="text" name="Description" id="Description" class="form-control" placeholder="Description" autofocus>
+          <input type="text" name="Description" id="Description" class="form-control" placeholder="Description" autofocus required>
           <label for="fileInput">File Input</label>
-          <input type="file" name="imageURL" id="fileInput" accept="image/*">
+          <input type="file" name="imageURL" id="fileInput" accept="image/*" required>
           </br>
           </br>
           <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
