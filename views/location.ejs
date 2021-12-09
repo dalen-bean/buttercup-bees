@@ -2,7 +2,6 @@
       <div id="content">
 				<h1>Bees</h1>
 				<h3><strong>Beehive Locations</strong></h3>
-				Log in as admin to add locations
 				<% if (currentUser && currentUser.admin) { %>
 				<form action="/beehives/new" method="GET">
 					<button name="newBeehive">Add New Beehive</button>

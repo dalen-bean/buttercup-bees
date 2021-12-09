@@ -13,6 +13,7 @@ const express = require("express"),
   passport = require("passport"),
   connectFlash = require("connect-flash"),
   User = require("./models/user"),
+  methodOverride = require("method-override"),
   cartController = require("./controllers/cartController"),
   ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn,
   layouts = require("express-ejs-layouts");
@@ -38,6 +39,12 @@ app.use(express.json()); // Use built-in middleware to parse request body data i
 app.use(layouts); // Tell the app that it should use express-ejs-layouts
 app.use(express.static("public")); // Tell the app where to find static resources
 app.use(fileUpload());
+
+app.use(
+  methodOverride("_method", {
+    methods: ["POST", "GET"]
+  })
+);
 
 app.use(
   expressSession({
@@ -85,7 +92,9 @@ app.get("/location", beehivesController.showAllLocations);
 app.get("/gardenProducts", gardensController.showAllLocations); //change this to show garden products
 app.get("/unauthorized", homeController.unauthorized);
 
+
 //Product Routes
+app.get("/products/viewCart", productsController.viewCart);
 app.get("/products/list", productsController.index, productsController.indexView);
 app.get("/products/new", productsController.new);
 app.post("/products/create", productsController.create, productsController.upload, productsController.redirectView);
@@ -93,6 +102,7 @@ app.get("/products/:id/edit", productsController.edit);
 app.put("/products/:id/update", productsController.update, productsController.redirectView);
 app.get("/products/:id", productsController.show, productsController.showView);
 app.get("/products/:id/delete", productsController.delete, productsController.redirectView);
+app.post("/products/addToCart", productsController.addToCart);
 
 //Beehive Routes
 app.get("/beehives/list", beehivesController.index, beehivesController.indexView);
@@ -120,14 +130,15 @@ app.get("/users/register", userController.register);
 app.post("/users/create", userController.create, userController.redirectView);
 
 // Cart Routes
-app.get("/view", cartController.addToCart, cartController.saveCart);
-app.delete("/remove/:id", cartController.removeFromCart, cartController.saveCart);
-app.put("/update", cartController.updateQuantity, cartController.saveCart);
+app.get("/cart/view", cartController.viewCart);
+app.post("/cart/add", cartController.addToCart, cartController.saveCart);
+app.delete("/cart/remove/:id", cartController.removeFromCart, cartController.saveCart);
+app.put("/cart/update", cartController.updateQuantity, cartController.saveCart);
 
 // Checkout
-app.get("/checkout", ensureLoggedIn("/users/login"), cartController.viewCart);
-app.post("/stripecheckout", cartController.saveOrder, cartController.stripeCheckout);
-app.get("/confirm", cartController.confirmPayment, cartController.resetCart, cartController.showInvoice);
+app.get("/cart/checkout", ensureLoggedIn("/users/login"), cartController.viewCart);
+app.post("/cart/stripecheckout", cartController.saveOrder, cartController.stripeCheckout);
+app.get("/cart/confirm", cartController.confirmPayment, cartController.resetCart, cartController.showInvoice);
 
 
 app.listen(app.get("port"), () => {
