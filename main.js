@@ -9,6 +9,7 @@ const express = require("express"),
   beehivesController = require("./controllers/beehiveController"),
   gardensController = require("./controllers/gardensController"),
   userController = require("./controllers/usersController"),
+  gardenProductController = require("./controllers/gardenProductsController"),
   expressSession = require("express-session"),
   passport = require("passport"),
   connectFlash = require("connect-flash"),
@@ -89,7 +90,7 @@ app.get("/index", homeController.showIndex);
 app.get("/layout", homeController.showLayout);
 app.get("/shop", homeController.showShop);
 app.get("/location", beehivesController.showAllLocations);
-app.get("/gardenProducts", gardensController.showAllLocations); //change this to show garden products
+app.get("/gardenProducts", gardenProductController.showAllProducts); //change this to show garden products
 app.get("/unauthorized", homeController.unauthorized);
 
 
@@ -103,6 +104,17 @@ app.put("/products/:id/update", productsController.update, productsController.re
 app.get("/products/:id", productsController.show, productsController.showView);
 app.get("/products/:id/delete", productsController.delete, productsController.redirectView);
 app.post("/products/addToCart", productsController.addToCart);
+
+//Garden Product Routes
+app.get("/gardenProducts/viewCart", gardenProductController.viewCart);
+app.get("/gardenProducts/list", gardenProductController.index, gardenProductController.indexView);
+app.get("/gardenProducts/new", gardenProductController.new);
+app.post("/gardenProducts/create", gardenProductController.create, gardenProductController.upload, gardenProductController.redirectView);
+app.get("/gardenProducts/:id/edit", gardenProductController.edit);
+app.put("/gardenProducts/:id/update", gardenProductController.update, gardenProductController.redirectView);
+app.get("/gardenProducts/:id", gardenProductController.show, gardenProductController.showView);
+app.get("/gardenProducts/:id/delete", gardenProductController.delete, gardenProductController.redirectView);
+app.post("/gardenProducts/addToCart", gardenProductController.addToCart);
 
 //Beehive Routes
 app.get("/beehives/list", beehivesController.index, beehivesController.indexView);

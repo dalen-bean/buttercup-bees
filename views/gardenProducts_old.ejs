@@ -1,0 +1,43 @@
+
+      <div id="content">
+				<h1>gardenProducts</h1>
+				<h3><strong>Garden Locations</strong></h3>
+				<% if (currentUser && currentUser.admin) { %>
+				<form action="/gardens/new" method="GET">
+					<button name="newGarden">Add New Garden</button>
+				</form>
+				<% } %>
+				<p>
+					Buttercup Bees & Nursery has a few Nursery locations where the plants start.
+				</p>
+				
+				<ul class="section">
+				<% gardens.forEach((garden) => { %>
+					<li>
+						<img src = "images/<%= garden.imageURL %>" alt = "">
+						<div>
+							<h2><%= garden.Location %></h2>
+							<p>
+								<%= garden.GardenID %>
+							</p>
+							<p>
+								<%= garden.Description %>
+							</p>
+							<% if (currentUser && currentUser.admin) { %>
+								<form action="<%=`/gardens/${garden._id}/edit`%>">
+									<button name="edit" value="<%=garden._id%>">
+								  		Edit Garden Details
+									</button>
+								</form>	
+								<form action="<%= `/gardens/${garden._id}/delete?_method=DELETE` %>">
+									<button name="delete" value="<%=garden._id%>" onclick="return confirm('Are you sure you want to delete this record?')">
+								  		Delete
+									</button>
+								</form>	
+							<% } %>
+						</div>
+					</li>
+					<%})%>
+				</ul>
+			</div>
+		</div>

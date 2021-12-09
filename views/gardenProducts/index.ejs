@@ -1,0 +1,35 @@
+
+    <div id="content">
+      <h2>Garden Products </h2>
+        <div class="center">
+          <a class="button" href="/gardenProducts/new">Update Garden Product Inventory</a>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% gardenProducts.forEach(gardenProduct => { %>
+            <tr>
+              <td>
+                <a href="<%= `/gardenProducts/${gardenProduct._id}` %>">
+                  <%= gardenProduct.name %>
+                </a>
+              </td>
+              <td>
+                <%= gardenProduct.description %>
+              </td>
+              <td>
+                <%= gardenProduct.price %>
+              </td>
+            </tr>
+
+            <% }); %>
+          </tbody>
+        </table>
+    </div>
+
