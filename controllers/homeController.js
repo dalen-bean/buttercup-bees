@@ -1,6 +1,8 @@
 "use strict";
 //DATABASE URL: mongodb+srv://Dalen:Mongodb@gettingstarted.k6dbe.mongodb.net/project1?retryWrites=true&w=majority
 
+const moment = require('moment');
+
 exports.showAbout = (req, res) => {
   res.render("about")
 };
@@ -14,7 +16,7 @@ exports.showGardens = (req, res) => {
   res.render("gardens");
 };
 exports.showIndex = (req, res) => {
-  res.render("index");
+  res.render("index", {moment: moment});
 };
 exports.showLayout = (req, res) => {
   res.render("layout");

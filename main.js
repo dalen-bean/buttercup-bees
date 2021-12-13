@@ -3,6 +3,7 @@
 // Import required libraries
 const express = require("express"),
   app = express(),
+  moment = require('moment'),
   homeController = require("./controllers/homeController"),
   errorController = require("./controllers/errorController"),
   productsController = require("./controllers/productsController"),
@@ -24,6 +25,7 @@ require("dotenv").config();
 // Import Mongoose rather than working with MongoDB directly
 const mongoose = require("mongoose");
 const usersController = require("./controllers/usersController");
+const apiController = require("./controllers/apiController");
 
 mongoose.connect("mongodb+srv://Dalen:Mongodb@gettingstarted.k6dbe.mongodb.net/Project1?retryWrites=true&w=majority")
 
@@ -47,6 +49,7 @@ app.use(
   })
 );
 
+
 app.use(
   expressSession({
     secret: "secret_passcode",
@@ -58,22 +61,26 @@ app.use(
   })
 );
 
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.use(cartController.getCart)
+
 app.use(connectFlash());
 
 app.use((req, res, next) => {
   res.locals.loggedIn = req.isAuthenticated();
   res.locals.currentUser = req.user;
   res.locals.flashMessages = req.flash();
+  res.locals.moment = moment;
   res.locals.cart = req.session.cart;
   next();
 });
 
-app.use(cartController.getCart)
 
 // Routes
 app.get("/", (req, res) => {
@@ -84,7 +91,6 @@ app.get("/", (req, res) => {
 // Home Routes
 app.get("/about", homeController.showAbout);
 app.get("/products", productsController.showAllProducts);
-app.get("/contact", homeController.showContact);
 app.get("/gardens", gardensController.showAllLocations);
 app.get("/index", homeController.showIndex);
 app.get("/layout", homeController.showLayout);
@@ -92,7 +98,6 @@ app.get("/shop", homeController.showShop);
 app.get("/location", beehivesController.showAllLocations);
 app.get("/gardenProducts", gardenProductController.showAllProducts); //change this to show garden products
 app.get("/unauthorized", homeController.unauthorized);
-
 
 //Product Routes
 app.get("/products/viewCart", productsController.viewCart);
@@ -152,6 +157,13 @@ app.get("/cart/checkout", ensureLoggedIn("/users/login"), cartController.viewCar
 app.post("/cart/stripecheckout", cartController.saveOrder, cartController.stripeCheckout);
 app.get("/cart/confirm", cartController.confirmPayment, cartController.resetCart, cartController.showInvoice);
 
+// API ROUTES
+app.get("/api/products", apiController.getProducts);
+app.get("/api/token", apiController.getToken, apiController.apiAuthenticate);
+
+//Error Controllers
+app.use(errorController.pageNotFoundError);
+app.use(errorController.internalServerError);
 
 app.listen(app.get("port"), () => {
   console.log(`Server running at http://localhost:${app.get("port")}`);
