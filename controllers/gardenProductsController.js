@@ -73,8 +73,8 @@ module.exports = {
 
       edit: (req, res, next) => {
         let gardenProductId = req.params.id;
-        gardenProduct.findById(productId)
-          .then(product => {
+        gardenProduct.findById(gardenProductId)
+          .then(gardenProduct => {
             res.render("gardenProducts/edit", {
               gardenProduct: gardenProduct
             });
@@ -86,6 +86,7 @@ module.exports = {
       },
 
       update: (req, res, next) => {
+        console.log(color.red("IS THIS REACHED?"))
         let gardenProductId = req.params.id,
           gardenProductParams = {
             name: req.body.name,

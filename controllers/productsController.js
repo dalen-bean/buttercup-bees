@@ -133,7 +133,6 @@ module.exports = {
         if (redirectPath !== undefined) res.redirect(redirectPath);
         else next();
       },
-//I took out the upload function because i couldn't get it to work
 
       upload : (req, res, next) => {
         let imageUrl;

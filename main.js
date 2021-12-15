@@ -4,6 +4,7 @@
 const express = require("express"),
   app = express(),
   moment = require('moment'),
+  colors = require('colors/safe'),
   homeController = require("./controllers/homeController"),
   errorController = require("./controllers/errorController"),
   productsController = require("./controllers/productsController"),
@@ -27,12 +28,13 @@ const mongoose = require("mongoose");
 const usersController = require("./controllers/usersController");
 const apiController = require("./controllers/apiController");
 
+
 mongoose.connect("mongodb+srv://Dalen:Mongodb@gettingstarted.k6dbe.mongodb.net/Project1?retryWrites=true&w=majority")
 
 const db = mongoose.connection;
 
 db.once("open", () => {
-  console.log("Successfully connected to MongoDB using Mongoose!");
+  console.log(colors.cyan("Successfully connected to MongoDB using Mongoose!"));
 });
 
 app.set("view engine", "ejs"); // Use EJS
@@ -80,7 +82,6 @@ app.use((req, res, next) => {
   res.locals.cart = req.session.cart;
   next();
 });
-
 
 // Routes
 app.get("/", (req, res) => {
@@ -165,6 +166,9 @@ app.get("/api/token", apiController.getToken, apiController.apiAuthenticate);
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
 
+
 app.listen(app.get("port"), () => {
-  console.log(`Server running at http://localhost:${app.get("port")}`);
+  console.log(colors.cyan(`Server running at http://localhost:${app.get("port")}`));
 });
+
+
